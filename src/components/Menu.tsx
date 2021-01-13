@@ -9,16 +9,15 @@ const Menu = ({ onMenuClick }: any) => {
 
     return (
         <div style={{ background: '#fff', height: '100%' }}>
-            {resources.map((resource: any) => (
-                <>
-                    <MenuItemLink
-                        key={resource.name}
-                        to={`/${resource.name}`}
-                        primaryText={resource?.options?.label ?? resource?.name}
-                        onClick={onMenuClick}
-                        sidebarIsOpen={open}
-                    />
-                </>
+            {resources.map(({ name, options, icon: Icon }: any) => (
+                <MenuItemLink
+                    key={name}
+                    to={`/${name}`}
+                    primaryText={options?.label ?? name}
+                    leftIcon={<Icon />}
+                    onClick={onMenuClick}
+                    sidebarIsOpen={open}
+                />
             ))}
         </div>
     );
