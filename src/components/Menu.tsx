@@ -1,10 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { MenuItemLink, getResources } from 'react-admin';
 
-
 const Menu = ({ onMenuClick }: any) => {
-    const open = useSelector((state: any) => state.admin.ui.sidebarOpen);
+    const {sidebarOpen} = useSelector((state: any) => state.admin.ui);
     const resources = useSelector(getResources);
 
     return (
@@ -16,7 +15,7 @@ const Menu = ({ onMenuClick }: any) => {
                     primaryText={options?.label ?? name}
                     leftIcon={<Icon />}
                     onClick={onMenuClick}
-                    sidebarIsOpen={open}
+                    sidebarIsOpen={sidebarOpen}
                 />
             ))}
         </div>
