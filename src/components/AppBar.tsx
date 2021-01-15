@@ -60,13 +60,13 @@ const notifications = [
     {
         name: 'test',
         icon: Layers,
-        value: 2,
+        value: 0,
         to: '/',
     },
     {
         name: 'test',
         icon: Zap,
-        value: 3,
+        value: 0,
         to: '/',
     }
 ];
@@ -90,15 +90,20 @@ const AppBarComponent = ()=> {
 
                     <div className={classes.column}>
                         <div className={classes.notifications}>
-                            {notifications.map(({ name, icon: Icon, value, to }, key)=> (
-                                <Notification
-                                    key={`${name}-${key}`}
-                                    size="small"
-                                    label={value}
-                                    icon={<Icon />}
-                                    onClick={()=> history.push(to)}
-                                />
-                            ))}
+                            {notifications.map(({ name, icon: Icon, value, to }, key)=> {
+                                const hasNotification = Boolean(value);
+
+                                return (
+                                    <Notification
+                                        key={`${name}-${key}`}
+                                        size="small"
+                                        label={value}
+                                        icon={<Icon />}
+                                        style={{ opacity: hasNotification ? 1 : 0.5}}
+                                        onClick={()=> history.push(to)}
+                                    />
+                                )
+                            })}
                         </div>
 
                         <AccountButton

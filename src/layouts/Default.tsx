@@ -2,11 +2,15 @@ import React from 'react';
 import { Layout } from 'react-admin';
 import { AppBar } from '../components'
 
-const DefaultLayout = (props: any) => (
+const DefaultLayout = ({ children, ...restProps }: any) => (
     <Layout
         appBar={AppBar}
-        {...props}
-    />
+        {...restProps}
+    >
+        <div style={{ paddingLeft: 20 }}>
+            {children}
+        </div>
+    </Layout>
 );
 
 export default DefaultLayout;
