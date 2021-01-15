@@ -1,16 +1,27 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { Layout } from 'react-admin';
 import { AppBar } from '../components'
 
-const DefaultLayout = ({ children, ...restProps }: any) => (
-    <Layout
-        appBar={AppBar}
-        {...restProps}
-    >
-        <div style={{ paddingLeft: 20 }}>
-            {children}
-        </div>
-    </Layout>
-);
+const useStyles = makeStyles({
+    layout: {
+        paddingLeft: 20,
+    },
+});
+
+const DefaultLayout = ({ children, ...restProps }: any) => {
+    const classes = useStyles();
+
+    return (
+        <Layout
+            appBar={AppBar}
+            {...restProps}
+        >
+            <div className={classes.layout}>
+                {children}
+            </div>
+        </Layout>
+    )
+};
 
 export default DefaultLayout;
