@@ -1,7 +1,7 @@
 import React from "react";
 import { NumberField } from 'react-admin';
 import { Chip } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core';
 import { grey, red, lightGreen, green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
@@ -15,13 +15,23 @@ const useStyles = makeStyles({
     },
 });
 
+const PercentChip = withStyles(()=> ({
+    root: {
+        borderRadius: 0,
+        height: 'auto',
+    },
+    label: {
+        padding: '2px 6px',
+    },
+}))(Chip);
+
 const PercentField = ({ record, source, ...restProps }: any) => {
     const classes = useStyles();
     const percentValue = record[source];
     const isPositive = percentValue > 0;
     return (
-        <Chip
-            label={<NumberField {...restProps} {... { record, source }} />}
+        <PercentChip
+            label={<NumberField {...restProps} {... { record, source }} style={{ fontWeight: 600 }} />}
             className={isPositive ? classes.positive : classes.negative}
         />
     )

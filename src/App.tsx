@@ -33,14 +33,14 @@ const RESOURCES = [
 ];
 
 const App = () => (
-    <Admin menu={Menu} layout={DefaultLayout} dataProvider={dataProvider}>
-        {RESOURCES.map(({ name, list, icon, options })=> (
-          <Resource
-            key={name}
-            {...{ name, list, icon, options}}
-          />
-        ))}
-    </Admin>
+  <Admin menu={Menu} layout={DefaultLayout} dataProvider={dataProvider}>
+    {RESOURCES.map(({ name, list, icon, options })=> (
+        <Resource
+          key={name}
+          {...{ name, list, icon, options}}
+        />
+      ))}
+  </Admin>
 );
 
 export default App;
