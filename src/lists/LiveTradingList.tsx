@@ -1,7 +1,7 @@
 import React from "react";
 import { List, Datagrid, TextField, NumberField, DateField } from 'react-admin';
 import { TradingListDetail } from '../components';
-import { StatusField, PercentField } from '../components/fields';
+import { StatusField, PercentField, TradingTypeField } from '../components/fields';
 
 const FIELDS = [
     {
@@ -11,9 +11,9 @@ const FIELDS = [
         label: 'Status',
     },
     {
-        component: TextField,
+        component: TradingTypeField,
         sortable: false,
-        source: 'type',
+        source: 'return_pct',
         label: 'Type',
     },
     {
