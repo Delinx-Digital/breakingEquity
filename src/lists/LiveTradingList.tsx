@@ -1,7 +1,7 @@
 import React from "react";
 import { List, Datagrid, TextField, NumberField, DateField } from 'react-admin';
 import { TradingListDetail } from '../components';
-import { StatusField, PercentField, TradingTypeField } from '../components/fields';
+import { StatusField, PercentField, TradingTypeField, ArrayLengthField } from '../components/fields';
 
 const FIELDS = [
     {
@@ -31,6 +31,7 @@ const FIELDS = [
     {
         component: DateField,
         sortable: true,
+        options: { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' },
         source: 'start_date',
         label: 'Created',
     },
@@ -54,7 +55,7 @@ const FIELDS = [
         label: 'Return %',
     },
     {
-        component: TextField,
+        component: ArrayLengthField,
         sortable: false,
         source: 'open_orders',
         label: 'Today orders',
