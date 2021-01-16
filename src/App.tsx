@@ -1,10 +1,10 @@
 import React from "react";
-import { Admin, Resource, ListGuesser } from 'react-admin';
+import { Admin, Resource } from 'react-admin';
 import fakeDataProvider from 'ra-data-fakerest';
 import { Zap, Layers } from 'react-feather';
 import { Menu } from './components';
 import { DefaultLayout } from './layouts';
-import { LiveTrading, PaperTrading } from './containers';
+import { LiveTrading, PaperTrading } from './lists';
 import liveTrading from './mockData/liveTrading.json';
 import paperTrading from './mockData/paperTrading.json';
 
