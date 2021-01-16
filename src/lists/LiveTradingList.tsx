@@ -1,7 +1,7 @@
 import React from "react";
 import { List, Datagrid, TextField, NumberField, DateField } from 'react-admin';
 import { TradingListDetail } from '../components';
-import { StatusField } from '../components/fields';
+import { StatusField, PercentField } from '../components/fields';
 
 const FIELDS = [
     {
@@ -47,7 +47,7 @@ const FIELDS = [
         label: 'Alpha',
     },
     {
-        component: NumberField,
+        component: PercentField,
         sortable: false,
         options: { style: 'percent' },
         source: 'return_pct',
