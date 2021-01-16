@@ -1,19 +1,14 @@
 import React from "react";
-import { List, Datagrid, TextField } from 'react-admin';
+import { List, Datagrid, TextField, NumberField, DateField } from 'react-admin';
 import { TradingListDetail } from '../components';
+import { StatusField } from '../components/fields';
 
 const FIELDS = [
     {
-        component: TextField,
+        component: StatusField,
         sortable: false,
         source: 'status',
         label: 'Status',
-    },
-    {
-        component: TextField,
-        sortable: false,
-        source: 'name',
-        label: 'Name',
     },
     {
         component: TextField,
@@ -24,36 +19,37 @@ const FIELDS = [
     {
         component: TextField,
         sortable: false,
+        source: 'name',
+        label: 'Name',
+    },
+    {
+        component: TextField,
+        sortable: false,
         source: 'ticker',
         label: 'Ticker',
     },
     {
-        component: TextField,
+        component: DateField,
         sortable: false,
         source: 'start_date',
         label: 'Created',
     },
     {
-        component: TextField,
+        component: NumberField,
         sortable: false,
         source: 'initial_capital',
         label: 'Capital',
     },
     {
-        component: TextField,
+        component: NumberField,
         sortable: false,
         source: 'alpha',
         label: 'Alpha',
     },
     {
-        component: TextField,
+        component: NumberField,
         sortable: false,
-        source: 'return_pct',
-        label: 'Return %',
-    },
-    {
-        component: TextField,
-        sortable: false,
+        options: { style: 'percent' },
         source: 'return_pct',
         label: 'Return %',
     },

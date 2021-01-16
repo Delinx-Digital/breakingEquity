@@ -45,7 +45,7 @@
       "start_date": "2019-01-01",
       "end_date": "2019-12-31",
       "ticker": "TSLA",
-      "status": "COMPLETED",
+      "status": "STOPPED",
       "benchmark_ticker": "TSLA",
       "progress": 100,
       "algo": {
@@ -84,7 +84,7 @@
       "start_date": "2019-01-01",
       "end_date": "2019-12-31",
       "ticker": "TSLA",
-      "status": "COMPLETED",
+      "status": "FAILED",
       "benchmark_ticker": "TSLA",
       "progress": 100,
       "algo": {
