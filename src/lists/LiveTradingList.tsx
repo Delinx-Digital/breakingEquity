@@ -30,7 +30,7 @@ const FIELDS = [
     },
     {
         component: DateField,
-        sortable: false,
+        sortable: true,
         source: 'start_date',
         label: 'Created',
     },
