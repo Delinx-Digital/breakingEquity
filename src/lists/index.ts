@@ -1,2 +1,1 @@
-export {default as LiveTradingList} from './LiveTradingList';
-export {default as PaperTradingList} from './PaperTradingList';
+export {default as TradingList} from './TradingList';

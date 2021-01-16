@@ -4,7 +4,7 @@ import fakeDataProvider from 'ra-data-fakerest';
 import { Zap, Layers } from 'react-feather';
 import { Menu } from './components';
 import { DefaultLayout } from './layouts';
-import { LiveTradingList, PaperTradingList } from './lists';
+import { TradingList } from './lists';
 import liveTrading from './mockData/liveTrading.json';
 import paperTrading from './mockData/paperTrading.json';
 
@@ -16,7 +16,7 @@ const dataProvider = fakeDataProvider({
 const RESOURCES = [
   {
     name: 'paper-trading',
-    list: PaperTradingList,
+    list: TradingList,
     icon: Zap,
     options: {
       label: 'Paper Trading',
@@ -24,7 +24,7 @@ const RESOURCES = [
   },
   {
     name: 'live-trading',
-    list: LiveTradingList,
+    list: TradingList,
     icon: Layers,
     options: {
       label: 'Live Trading'
