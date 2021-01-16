@@ -1,24 +1,30 @@
 import React from "react";
 import { Admin, Resource, ListGuesser } from 'react-admin';
-import jsonServerProvider from 'ra-data-json-server';
+import fakeDataProvider from 'ra-data-fakerest';
 import { Zap, Layers } from 'react-feather';
 import { Menu } from './components';
 import { DefaultLayout } from './layouts';
+import { LiveTrading, PaperTrading } from './containers';
+import liveTrading from './mockData/liveTrading.json';
+import paperTrading from './mockData/paperTrading.json';
 
-const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+const dataProvider = fakeDataProvider({
+    'paper-trading': paperTrading,
+    'live-trading': liveTrading,
+});
 
 const RESOURCES = [
   {
-    name: 'users',
-    list: ListGuesser,
+    name: 'paper-trading',
+    list: PaperTrading,
     icon: Zap,
     options: {
       label: 'Paper Trading'
     },
   },
   {
-    name: 'posts',
-    list: ListGuesser,
+    name: 'live-trading',
+    list: LiveTrading,
     icon: Layers,
     options: {
       label: 'Live Trading'
