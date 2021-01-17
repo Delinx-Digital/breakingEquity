@@ -5,29 +5,39 @@ const Chart = ({ data }: any)=> {
   const ref: any = React.useRef();
 
   useEffect(() => {
-    const chart = createChart(ref.current, { height: 300 });
-    const lineSeries = chart.addLineSeries();
-    lineSeries.setData(data);
-
-    chart.applyOptions({
-        crosshair: {
-            vertLine: {
-                color: '#6A5ACD',
-                width: 1,
-                style: 1,
-                visible: false,
-                labelVisible: false,
-            },
-            horzLine: {
-                color: '#6A5ACD',
-                width: 1,
-                style: 2,
-                visible: true,
-                labelVisible: false,
-            },
-            mode: 1,
+    const chart = createChart(ref.current, {
+      height: 300,
+      rightPriceScale: {
+        visible: false,
+      },
+      leftPriceScale: {
+        visible: true,
+      },
+      layout: {
+        backgroundColor: '#FFFFFF',
+        textColor: '#191919',
+      },
+      watermark: {
+        color: 'rgba(0, 0, 0, 0)',
+      },
+      grid: {
+        vertLines: {
+          visible: false,
         },
+        horzLines: {
+          color: '#f0f3fa',
+        },
+      },
     });
+
+    const areaSeries = chart.addAreaSeries({
+      topColor: 'rgba(33, 150, 243, 0.56)',
+      bottomColor: 'rgba(33, 150, 243, 0.04)',
+      lineColor: 'rgba(33, 150, 243, 1)',
+      lineWidth: 2,
+    });
+
+    areaSeries.setData(data);
   }, []);
 
   return (

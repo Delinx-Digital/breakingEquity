@@ -1,8 +1,20 @@
 import React from 'react';
+import { NumberField } from 'react-admin';
+import { Grid, LinearProgress, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Chart from './Chart';
-import { Grid, LinearProgress } from '@material-ui/core'
+import { formatNumber } from '../utils';
+
+const useStyles = makeStyles({
+    item: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+});
 
 const TradingListDetail = ({ record }: any) => {
+    const classes = useStyles();
+
     const {
         current_positions,
         market_value,
@@ -33,11 +45,11 @@ const TradingListDetail = ({ record }: any) => {
         },
         {
             label: 'Market value',
-            value: market_value,
+            value: formatNumber(market_value),
         },
         {
             label: 'Available cash',
-            value: available_cash,
+            value: formatNumber(available_cash),
         },
         {
             label: 'Open Order',
@@ -45,19 +57,19 @@ const TradingListDetail = ({ record }: any) => {
         },
         {
             label: 'Max Beta',
-            value: beta,
+            value: formatNumber(beta),
         },
         {
             label: 'R Squared',
-            value: r2,
+            value: formatNumber(r2),
         },
         {
             label: 'Return',
-            value: return_value,
+            value: formatNumber(return_value),
         },
         {
             label: 'MDD',
-            value: mdd,
+            value: formatNumber(mdd),
         },
     ];
 
@@ -75,9 +87,10 @@ const TradingListDetail = ({ record }: any) => {
                     <span>WIN/LOSS/RATIO</span>
                     <LinearProgress value={return_pct * 100} variant='determinate' />
                     {tradingDetailInfo.map(({ label, value })=> (
-                        <div>
-                            <span>{label}</span>
-                            <span>{value}</span>
+                        <div className={classes.item}>
+                            <Typography variant="button">{label}</Typography>
+                            <Typography variant="button">{value}</Typography>
+
                         </div>
                     ))}
                 </Grid>
