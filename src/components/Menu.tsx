@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     sideBar: {
         background: '#fff',
         height: '100%',
-        paddingTop: 20,
+        paddingTop: 40,
         borderRight: `1px solid ${grey[300]}`,
     },
 });
