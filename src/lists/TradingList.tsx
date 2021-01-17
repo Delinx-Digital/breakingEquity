@@ -1,8 +1,20 @@
 import React from "react";
-import { List, Datagrid, TextField, NumberField, DateField, ListProps } from 'react-admin';
+import {
+    List,
+    Datagrid,
+    TextField,
+    NumberField,
+    DateField,
+    ListProps,
+} from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import { TradingListDetail } from '../components';
-import { StatusField, PercentField, TradingTypeField, ArrayLengthField } from '../components/fields';
+import {
+    StatusField,
+    PercentField,
+    TradingTypeField,
+    ArrayLengthField,
+} from '../components/fields';
 
 const FIELDS = [
     {
@@ -70,7 +82,7 @@ const LiveTradingList = (props: ListProps) => {
     const classes = useStyles();
 
     return (
-        <List bulkActionButtons={false} exporter={false} {...props}>
+        <List bulkActionButtons={false} exporter={false} perPage={3} {...props}>
             <Datagrid expand={<TradingListDetail />} classes={{ headerCell: classes.headerCell, rowCell: classes.rowCell }}>
                 {FIELDS.map(({ component: Component, ...restProps }, index)=> (
                     <Component
