@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { createChart } from 'lightweight-charts';
+import { createChart, SeriesDataItemTypeMap } from 'lightweight-charts';
 
-//TODO: Adding interface here
-const Chart = ({ data }: any)=> {
-  //TODO: Adding interface here
+interface Props {
+  data: [SeriesDataItemTypeMap['Bar']];
+}
+
+const Chart = ({ data }: Props)=> {
   const ref: any = React.useRef();
 
   useEffect(() => {

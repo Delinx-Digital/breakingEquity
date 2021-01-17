@@ -1,5 +1,5 @@
 import React from "react";
-import { NumberField } from 'react-admin';
+import { NumberField, FieldProps } from 'react-admin';
 import { Chip } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core';
 import { grey, red, lightGreen, green } from '@material-ui/core/colors';
@@ -25,10 +25,9 @@ const PercentChip = withStyles(()=> ({
     },
 }))(Chip);
 
-//TODO: Adding interface here
-const PercentField = ({ record, source, ...restProps }: any) => {
+const PercentField = ({ record, source, ...restProps }: FieldProps) => {
     const classes = useStyles();
-    const percentValue = record[source];
+    const percentValue = record?.[source ?? ''];
     const isPositive = percentValue > 0;
     return (
         <PercentChip

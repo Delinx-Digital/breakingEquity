@@ -1,4 +1,5 @@
 import React from 'react';
+import { FieldProps } from 'react-admin';
 import { Grid, LinearProgress, Typography } from '@material-ui/core';
 import { LogIn, LogOut } from 'react-feather';
 import { grey, red, lime } from '@material-ui/core/colors';
@@ -59,7 +60,7 @@ const useStyles = makeStyles({
     }
 });
 
-const BorderLinearProgress = withStyles((theme) => ({
+const BorderLinearProgress = withStyles(() => ({
     root: {
       height: 6,
       borderRadius: 5,
@@ -71,10 +72,9 @@ const BorderLinearProgress = withStyles((theme) => ({
       borderRadius: 5,
       backgroundColor: lime[600],
     },
-  }))(LinearProgress);
+}))(LinearProgress);
 
-//TODO: Adding interface here
-const TradingListDetail = ({ record }: any) => {
+const TradingListDetail = ({ record }: FieldProps) => {
     const classes = useStyles();
 
     const {
@@ -90,7 +90,7 @@ const TradingListDetail = ({ record }: any) => {
         enter_criteria,
         exit_criteria,
         serialized_result,
-    } = record;
+    } = record as any;
 
     const tradingDetailInfo = [
         {
@@ -137,9 +137,7 @@ const TradingListDetail = ({ record }: any) => {
 
     const serializedResultToJSON = JSON.parse(serialized_result);
     const { position_history } = serializedResultToJSON
-    //TODO: Adding interface here
     const resultbyCashEquity = position_history.filter(({ type }: any)=> type === 'cash+equity')[0];
-    //TODO: Adding interface here
     const chartData = resultbyCashEquity?.positions.map((position: any)=> ({ time: position[0], value: position[1] }));
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Layout } from 'react-admin';
+import { makeStyles,  } from '@material-ui/core/styles';
+import { Layout, LayoutProps } from 'react-admin';
 import { AppBar } from '../components'
 
 const useStyles = makeStyles({
@@ -9,8 +9,7 @@ const useStyles = makeStyles({
     },
 });
 
-//TODO: Adding interface here
-const DefaultLayout = ({ children, ...restProps }: any) => {
+const DefaultLayout = ({ children, ...restProps }: LayoutProps) => {
     const classes = useStyles();
 
     return (

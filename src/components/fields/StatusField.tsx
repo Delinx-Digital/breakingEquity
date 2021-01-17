@@ -1,4 +1,5 @@
 import React from "react";
+import { FieldProps } from 'react-admin';
 import { Chip } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core';
 import { grey, red, lightGreen, green } from '@material-ui/core/colors';
@@ -29,10 +30,9 @@ const StatusChip = withStyles(()=> ({
     },
 }))(Chip);
 
-//TODO: Adding interface here
-const StatusField = ({source, record}: any) => {
+const StatusField = ({source, record}: FieldProps) => {
     const statusStyle: any = useStatus();
-    const currentStatus = record[source];
+    const currentStatus = record?.[source ?? ''];
 
     return (
         <StatusChip

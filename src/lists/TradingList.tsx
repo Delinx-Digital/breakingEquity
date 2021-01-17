@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Datagrid, TextField, NumberField, DateField } from 'react-admin';
+import { List, Datagrid, TextField, NumberField, DateField, ListProps } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import { TradingListDetail } from '../components';
 import { StatusField, PercentField, TradingTypeField, ArrayLengthField } from '../components/fields';
@@ -66,8 +66,7 @@ const useStyles = makeStyles({
     },
 });
 
-//TODO: Adding interface here
-const LiveTradingList = (props: any) => {
+const LiveTradingList = (props: ListProps) => {
     const classes = useStyles();
 
     return (

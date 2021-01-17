@@ -1,8 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { MenuItemLink, getResources, ReduxState, MenuProps } from 'react-admin';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { grey, blue } from '@material-ui/core/colors';
-import { useSelector } from 'react-redux';
-import { MenuItemLink, getResources } from 'react-admin';
 
 const useStyles = makeStyles({
     sideBar: {
@@ -31,11 +31,9 @@ const MenuItem = withStyles({
     }
 })(MenuItemLink);
 
-//TODO: Adding interface here
 const Menu = ({ onMenuClick }: any) => {
     const classes = useStyles();
-    //TODO: Adding interface here
-    const {sidebarOpen} = useSelector((state: any) => state.admin.ui);
+    const {sidebarOpen} = useSelector((state: ReduxState) => state.admin.ui);
     const resources = useSelector(getResources);
 
     return (

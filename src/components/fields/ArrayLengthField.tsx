@@ -1,8 +1,8 @@
 import React from "react";
+import { FieldProps } from 'react-admin';
 
-//TODO: Adding interface here
-const ArrayLengthField = ({ record, source }: any) => {
-    const value = record[source];
+const ArrayLengthField = ({ record, source }: FieldProps) => {
+    const value = record?.[source ?? ''];
     return (
         <div>
             {value.length}
