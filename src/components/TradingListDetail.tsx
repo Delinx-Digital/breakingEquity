@@ -1,11 +1,26 @@
 import React from 'react';
-import { NumberField } from 'react-admin';
 import { Grid, LinearProgress, Typography } from '@material-ui/core';
+import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Chart from './Chart';
 import { formatNumber } from '../utils';
 
 const useStyles = makeStyles({
+    detailWrapper: {
+        margin: '-6px 0',
+    },
+    criteriaWrapper: {
+        padding: '0 20px',
+    },
+    tradingDetailInfo: {
+        borderLeft: `1px solid ${grey[300]}`,
+        borderRight: `1px solid ${grey[300]}`,
+        padding: '0 20px',
+        height: '100%',
+    },
+    columnContent: {
+        padding: '20px 0',
+    },
     item: {
         display: 'flex',
         justifyContent: 'space-between',
@@ -81,25 +96,40 @@ const TradingListDetail = ({ record }: any) => {
     const chartData = resultbyCashEquity?.positions.map((position: any)=> ({ time: position[0], value: position[1] }));
 
     return (
-        <div>
+        <div className={classes.detailWrapper}>
             <Grid container>
                 <Grid item xs={5}>
-                    <Chart data={chartData} />
+                    <div className={classes.columnContent}>
+                        <Chart data={chartData} />
+                    </div>
                 </Grid>
                 <Grid item xs={3}>
-                    <span>WIN/LOSS/RATIO</span>
-                    <LinearProgress value={return_pct * 100} variant='determinate' />
-                    {tradingDetailInfo.map(({ label, value })=> (
-                        <div className={classes.item}>
-                            <Typography variant="button">{label}</Typography>
-                            <Typography variant="button">{value}</Typography>
+                    <div className={classes.tradingDetailInfo}>
+                        <div className={classes.columnContent}>
+                            <Typography variant="button">WIN/LOSS/RATIO</Typography>
 
+                            <LinearProgress
+                                value={return_pct * 100}
+                                variant='determinate'
+                            />
+
+                            {tradingDetailInfo.map(({ label, value })=> (
+                                <div className={classes.item}>
+                                    <Typography variant="button">{label}</Typography>
+                                    <Typography variant="button">{value}</Typography>
+
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
                 </Grid>
                 <Grid item xs={4}>
-                    <p>{enter_criteria}</p>
-                    <p>{exit_criteria}</p>
+                    <div className={classes.columnContent}>
+                        <div className={classes.criteriaWrapper}>
+                            <code>{enter_criteria}</code>
+                            <code>{exit_criteria}</code>
+                        </div>
+                    </div>
                 </Grid>
             </Grid>
         </div>
