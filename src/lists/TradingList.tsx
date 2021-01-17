@@ -54,7 +54,7 @@ const FIELDS = [
 ];
 
 const LiveTradingList = (props: any) => (
-    <List {...props} bulkActionButtons={false}>
+    <List {...props} bulkActionButtons={false} exporter={false}>
         <Datagrid expand={<TradingListDetail />}>
             {FIELDS.map(({ component: Component, ...restProps }, index)=> (
                 <Component

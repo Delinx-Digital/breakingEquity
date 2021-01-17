@@ -1,6 +1,6 @@
 import React from 'react';
 import Chart from './Chart';
-import { Grid } from '@material-ui/core'
+import { Grid, LinearProgress } from '@material-ui/core'
 
 const TradingListDetail = ({ record }: any) => {
     const {
@@ -11,13 +11,14 @@ const TradingListDetail = ({ record }: any) => {
         beta,
         r2,
         mdd,
+        return_pct,
         return_value,
         enter_criteria,
         exit_criteria,
         serialized_result,
     } = record;
 
-    const info = [
+    const tradingDetailInfo = [
         {
             label: 'Current position',
             value: current_positions.map((position: any)=> (
@@ -60,17 +61,20 @@ const TradingListDetail = ({ record }: any) => {
         },
     ];
 
-    const chartData = JSON.parse(serialized_result);
+    const serializedResultToJSON = JSON.parse(serialized_result);
+    const resultbyCashEquity = serializedResultToJSON?.position_history.filter(({ type }: any)=> type === 'cash+equity')[0];
+    const chartData = resultbyCashEquity?.positions.map((position: any)=> ({ time: position[0], value: position[1] }));
 
     return (
         <div>
-            <Grid container spacing={0}>
+            <Grid container>
                 <Grid item xs={5}>
-                    <Chart data={chartData?.position_history[3]?.positions.map((position: any)=> ({ time: position[0], value: position[1] }))}
-                    />
+                    <Chart data={chartData} />
                 </Grid>
                 <Grid item xs={3}>
-                    {info.map(({ label, value })=> (
+                    <span>WIN/LOSS/RATIO</span>
+                    <LinearProgress value={return_pct * 100} variant='determinate' />
+                    {tradingDetailInfo.map(({ label, value })=> (
                         <div>
                             <span>{label}</span>
                             <span>{value}</span>
@@ -78,8 +82,8 @@ const TradingListDetail = ({ record }: any) => {
                     ))}
                 </Grid>
                 <Grid item xs={4}>
-                    {enter_criteria}
-                    {exit_criteria}
+                    <p>{enter_criteria}</p>
+                    <p>{exit_criteria}</p>
                 </Grid>
             </Grid>
         </div>
