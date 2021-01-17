@@ -1,5 +1,6 @@
 import React from "react";
 import { List, Datagrid, TextField, NumberField, DateField } from 'react-admin';
+import { makeStyles } from '@material-ui/core/styles';
 import { TradingListDetail } from '../components';
 import { StatusField, PercentField, TradingTypeField, ArrayLengthField } from '../components/fields';
 
@@ -53,18 +54,34 @@ const FIELDS = [
     },
 ];
 
+const useStyles = makeStyles({
+    headerCell: {
+        fontWeight: 600,
+        paddingTop: 15,
+        paddingBottom: 15,
+    },
+    rowCell: {
+        paddingTop: 15,
+        paddingBottom: 15,
+    }
+});
+
 //TODO: Adding interface here
-const LiveTradingList = (props: any) => (
-    <List bulkActionButtons={false} exporter={false} {...props}>
-        <Datagrid expand={<TradingListDetail />}>
-            {FIELDS.map(({ component: Component, ...restProps }, index)=> (
-                <Component
-                    key={`${restProps.source}-${index}`}
-                    {...restProps}
-                />
-            ))}
-        </Datagrid>
-    </List>
-);
+const LiveTradingList = (props: any) => {
+    const classes = useStyles();
+
+    return (
+        <List bulkActionButtons={false} exporter={false} {...props}>
+            <Datagrid expand={<TradingListDetail />} classes={{ headerCell: classes.headerCell, rowCell: classes.rowCell }}>
+                {FIELDS.map(({ component: Component, ...restProps }, index)=> (
+                    <Component
+                        key={`${restProps.source}-${index}`}
+                        {...restProps}
+                    />
+                ))}
+            </Datagrid>
+        </List>
+    )
+};
 
 export default LiveTradingList;
