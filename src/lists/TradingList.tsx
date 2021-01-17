@@ -63,7 +63,7 @@ const useStyles = makeStyles({
     rowCell: {
         paddingTop: 15,
         paddingBottom: 15,
-    }
+    },
 });
 
 //TODO: Adding interface here

@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { grey } from '@material-ui/core/colors';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { grey, blue } from '@material-ui/core/colors';
 import { useSelector } from 'react-redux';
 import { MenuItemLink, getResources } from 'react-admin';
 
@@ -13,6 +13,24 @@ const useStyles = makeStyles({
     },
 });
 
+const MenuItem = withStyles({
+    root: {
+        fontWeight: 600,
+        color: grey[600],
+        paddingTop: 12,
+        paddingBottom: 12,
+    },
+    icon: {
+        color: grey[600],
+    },
+    active: {
+        color: blue[500],
+        '& svg': {
+            color: blue[500],
+        }
+    }
+})(MenuItemLink);
+
 //TODO: Adding interface here
 const Menu = ({ onMenuClick }: any) => {
     const classes = useStyles();
@@ -23,7 +41,7 @@ const Menu = ({ onMenuClick }: any) => {
     return (
         <div className={classes.sideBar}>
             {resources.map(({ name, options, icon: Icon }: any) => (
-                <MenuItemLink
+                <MenuItem
                     key={name}
                     to={`/${name}`}
                     primaryText={options?.label ?? name}
