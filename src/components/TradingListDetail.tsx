@@ -1,21 +1,39 @@
 import React from 'react';
 import { Grid, LinearProgress, Typography } from '@material-ui/core';
+import { LogIn, LogOut } from 'react-feather';
 import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
-import Chart from './Chart';
 import { formatNumber } from '../utils';
+import Chart from './Chart';
 
 const useStyles = makeStyles({
     detailWrapper: {
         margin: '-6px 0',
     },
     criteriaWrapper: {
-        padding: '0 20px',
+        padding: '0 15px',
+    },
+    criteria: {
+        marginBottom: 30,
+        position: 'relative',
+        padding: '0 35px',
+
+        '& svg': {
+            position: 'absolute',
+            width: 22,
+            height: 22,
+            left: 0,
+            top: 0,
+            color: grey[600],
+        },
+        '& code': {
+            fontSize: 13,
+        }
     },
     tradingDetailInfo: {
         borderLeft: `1px solid ${grey[300]}`,
         borderRight: `1px solid ${grey[300]}`,
-        padding: '0 20px',
+        padding: '0 15px',
         height: '100%',
     },
     columnContent: {
@@ -24,7 +42,21 @@ const useStyles = makeStyles({
     item: {
         display: 'flex',
         justifyContent: 'space-between',
+        marginBottom: 5,
     },
+    itemLabel: {
+        fontWeight: 600,
+        color: grey[500],
+    },
+    itemValue: {
+        fontWeight: 600,
+    },
+    ratioLabel: {
+        fontWeight:600,
+    },
+    ratioWrapper: {
+        marginBottom: 20,
+    }
 });
 
 //TODO: Adding interface here
@@ -90,8 +122,9 @@ const TradingListDetail = ({ record }: any) => {
     ];
 
     const serializedResultToJSON = JSON.parse(serialized_result);
+    const { position_history } = serializedResultToJSON
     //TODO: Adding interface here
-    const resultbyCashEquity = serializedResultToJSON?.position_history.filter(({ type }: any)=> type === 'cash+equity')[0];
+    const resultbyCashEquity = position_history.filter(({ type }: any)=> type === 'cash+equity')[0];
     //TODO: Adding interface here
     const chartData = resultbyCashEquity?.positions.map((position: any)=> ({ time: position[0], value: position[1] }));
 
@@ -106,18 +139,34 @@ const TradingListDetail = ({ record }: any) => {
                 <Grid item xs={3}>
                     <div className={classes.tradingDetailInfo}>
                         <div className={classes.columnContent}>
-                            <Typography variant="button">WIN/LOSS/RATIO</Typography>
+                            <div className={classes.ratioWrapper}>
+                                <Typography
+                                    className={classes.ratioLabel}
+                                    variant="button"
+                                >
+                                    WIN/LOSS/RATIO
+                                </Typography>
 
-                            <LinearProgress
-                                value={return_pct * 100}
-                                variant='determinate'
-                            />
+                                <LinearProgress
+                                    value={return_pct * 100}
+                                    variant='determinate'
+                                />
+                            </div>
 
-                            {tradingDetailInfo.map(({ label, value })=> (
-                                <div className={classes.item}>
-                                    <Typography variant="button">{label}</Typography>
-                                    <Typography variant="button">{value}</Typography>
-
+                            {tradingDetailInfo.map(({ label, value }, index)=> (
+                                <div key={`${label}-${index}`} className={classes.item}>
+                                    <Typography
+                                        variant="button"
+                                        className={classes.itemLabel}
+                                    >
+                                        {label}
+                                    </Typography>
+                                    <Typography
+                                        variant="button"
+                                        className={classes.itemValue}
+                                    >
+                                        {value}
+                                    </Typography>
                                 </div>
                             ))}
                         </div>
@@ -126,8 +175,14 @@ const TradingListDetail = ({ record }: any) => {
                 <Grid item xs={4}>
                     <div className={classes.columnContent}>
                         <div className={classes.criteriaWrapper}>
-                            <code>{enter_criteria}</code>
-                            <code>{exit_criteria}</code>
+                            <div className={classes.criteria}>
+                                <LogIn />
+                                <code>{enter_criteria}</code>
+                            </div>
+                            <div className={classes.criteria}>
+                                <LogOut />
+                                <code>{exit_criteria}</code>
+                            </div>
                         </div>
                     </div>
                 </Grid>
