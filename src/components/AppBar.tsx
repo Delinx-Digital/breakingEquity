@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link, useHistory } from 'react-router-dom';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { grey } from '@material-ui/core/colors';
 import { AppBar, Toolbar, IconButton, Chip } from '@material-ui/core';
 import { BarChart2, Layers, Zap, User, Menu } from 'react-feather';
 import Logo from './Logo';
@@ -38,6 +39,9 @@ const Notification = withStyles({
     },
     icon: {
         marginRight: 0,
+    },
+    label: {
+        fontWeight: 600,
     }
 })(Chip);
 
@@ -47,6 +51,10 @@ const AccountButton = withStyles({
     },
     icon: {
         marginRight: 0,
+    },
+    label: {
+        fontWeight: 600,
+        color: grey[700],
     }
 })(Chip);
 
