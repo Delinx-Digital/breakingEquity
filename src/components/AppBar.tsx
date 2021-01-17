@@ -1,8 +1,9 @@
 import React from 'react';
+import { AppBar } from 'react-admin';
 import { Link, useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { grey } from '@material-ui/core/colors';
-import { AppBar, Toolbar, IconButton, Chip } from '@material-ui/core';
+import { Chip } from '@material-ui/core';
 import { BarChart2, Layers, Zap, User, Menu } from 'react-feather';
 import Logo from './Logo';
 
@@ -11,14 +12,16 @@ const useStyles = makeStyles({
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
-    },
-    column: {
-        display: 'flex',
         alignItems: 'center',
+        padding: '5px 0',
     },
     logo: {
-        marginLeft: 20,
         display: 'block',
+
+        '& svg': {
+            width: '132px',
+            height: '50px',
+        }
     },
     notifications: {
         marginRight: 10,
@@ -84,45 +87,35 @@ const AppBarComponent = ()=> {
     const history = useHistory();
 
     return (
-        <AppBar color="default">
-            <Toolbar>
-                <div className={classes.headerWrapper}>
-                    <div className={classes.column}>
-                        <IconButton>
-                            <Menu />
-                        </IconButton>
-                        <Link to="/" className={classes.logo}>
-                            <Logo />
-                        </Link>
+        <AppBar color="default" userMenu={false}>
+            <div className={classes.headerWrapper}>
+                <Link to="/" className={classes.logo}><Logo /></Link>
+                <div style={{ display: 'flex' }}>
+                    <div className={classes.notifications}>
+                        {notifications.map(({ name, icon: Icon, value, to }, key)=> {
+                            const hasNotification = Boolean(value);
+
+                            return (
+                                <Notification
+                                    key={`${name}-${key}`}
+                                    size="small"
+                                    label={value}
+                                    icon={<Icon />}
+                                    style={{ opacity: hasNotification ? 1 : 0.5}}
+                                    onClick={()=> history.push(to)}
+                                />
+                            )
+                        })}
                     </div>
 
-                    <div className={classes.column}>
-                        <div className={classes.notifications}>
-                            {notifications.map(({ name, icon: Icon, value, to }, key)=> {
-                                const hasNotification = Boolean(value);
-
-                                return (
-                                    <Notification
-                                        key={`${name}-${key}`}
-                                        size="small"
-                                        label={value}
-                                        icon={<Icon />}
-                                        style={{ opacity: hasNotification ? 1 : 0.5}}
-                                        onClick={()=> history.push(to)}
-                                    />
-                                )
-                            })}
-                        </div>
-
-                        <AccountButton
-                            size="small"
-                            icon={<User/>}
-                            label="Morgan Smith"
-                            onClick={()=> history.push('/')}
-                        />
-                    </div>
+                    <AccountButton
+                        size="small"
+                        icon={<User/>}
+                        label="Morgan Smith"
+                        onClick={()=> history.push('/')}
+                    />
                 </div>
-            </Toolbar>
+            </div>
         </AppBar>
     )
 };
