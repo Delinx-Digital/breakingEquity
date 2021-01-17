@@ -6,57 +6,48 @@ import { StatusField, PercentField, TradingTypeField, ArrayLengthField } from '.
 const FIELDS = [
     {
         component: StatusField,
-        sortable: false,
         source: 'status',
         label: 'Status',
     },
     {
         component: TradingTypeField,
-        sortable: false,
         source: 'return_pct',
         label: 'Type',
     },
     {
         component: TextField,
-        sortable: false,
         source: 'name',
         label: 'Name',
     },
     {
         component: TextField,
-        sortable: false,
         source: 'ticker',
         label: 'Ticker',
     },
     {
         component: DateField,
-        sortable: true,
         options: { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' },
         source: 'start_date',
         label: 'Created',
     },
     {
         component: NumberField,
-        sortable: false,
         source: 'initial_capital',
         label: 'Capital',
     },
     {
         component: NumberField,
-        sortable: false,
         source: 'alpha',
         label: 'Alpha',
     },
     {
         component: PercentField,
-        sortable: false,
         options: { style: 'percent' },
         source: 'return_pct',
         label: 'Return %',
     },
     {
         component: ArrayLengthField,
-        sortable: false,
         source: 'open_orders',
         label: 'Today orders',
     },

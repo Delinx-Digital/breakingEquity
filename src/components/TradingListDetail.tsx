@@ -2,31 +2,88 @@ import React from 'react';
 import Chart from './Chart';
 import { Grid } from '@material-ui/core'
 
-const TradingListDetail = (props: any) => (
-    <div>
-        <Grid container>
-            <Grid item xs={5}>
-                <Chart data={[
-                    { time: '2019-04-11', value: 80.01 },
-                    { time: '2019-04-12', value: 96.63 },
-                    { time: '2019-04-13', value: 76.64 },
-                    { time: '2019-04-14', value: 81.89 },
-                    { time: '2019-04-15', value: 74.43 },
-                    { time: '2019-04-16', value: 80.01 },
-                    { time: '2019-04-17', value: 96.63 },
-                    { time: '2019-04-18', value: 76.64 },
-                    { time: '2019-04-19', value: 81.89 },
-                    { time: '2019-04-20', value: 74.43 },
-                    ]}
-                />
+const TradingListDetail = ({ record }: any) => {
+    const {
+        current_positions,
+        market_value,
+        available_cash,
+        open_orders,
+        beta,
+        r2,
+        mdd,
+        return_value,
+        enter_criteria,
+        exit_criteria,
+        serialized_result,
+    } = record;
+
+    const info = [
+        {
+            label: 'Current position',
+            value: current_positions.map((position: any)=> (
+                <div>
+                    {Object.keys(position).map((key)=> (
+                        <div>
+                            {position[key]} x {key}
+                        </div>
+                    ))}
+                </div>
+            ))
+        },
+        {
+            label: 'Market value',
+            value: market_value,
+        },
+        {
+            label: 'Available cash',
+            value: available_cash,
+        },
+        {
+            label: 'Open Order',
+            value: open_orders.length,
+        },
+        {
+            label: 'Max Beta',
+            value: beta,
+        },
+        {
+            label: 'R Squared',
+            value: r2,
+        },
+        {
+            label: 'Return',
+            value: return_value,
+        },
+        {
+            label: 'MDD',
+            value: mdd,
+        },
+    ];
+
+    const chartData = JSON.parse(serialized_result);
+
+    return (
+        <div>
+            <Grid container spacing={0}>
+                <Grid item xs={5}>
+                    <Chart data={chartData?.position_history[3]?.positions.map((position: any)=> ({ time: position[0], value: position[1] }))}
+                    />
+                </Grid>
+                <Grid item xs={3}>
+                    {info.map(({ label, value })=> (
+                        <div>
+                            <span>{label}</span>
+                            <span>{value}</span>
+                        </div>
+                    ))}
+                </Grid>
+                <Grid item xs={4}>
+                    {enter_criteria}
+                    {exit_criteria}
+                </Grid>
             </Grid>
-            <Grid item xs={3}>
-            </Grid>
-            <Grid item xs={4}>
-                dasdsadsa
-            </Grid>
-        </Grid>
-    </div>
-);
+        </div>
+    );
+};
 
 export default TradingListDetail;
