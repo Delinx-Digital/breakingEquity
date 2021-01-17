@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, LinearProgress, Typography } from '@material-ui/core';
 import { LogIn, LogOut } from 'react-feather';
-import { grey } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/core/styles';
+import { grey, green, red, lime } from '@material-ui/core/colors';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { formatNumber } from '../utils';
 import Chart from './Chart';
 
@@ -58,6 +58,20 @@ const useStyles = makeStyles({
         marginBottom: 20,
     }
 });
+
+const BorderLinearProgress = withStyles((theme) => ({
+    root: {
+      height: 6,
+      borderRadius: 5,
+    },
+    colorPrimary: {
+      backgroundColor: red[500],
+    },
+    bar: {
+      borderRadius: 5,
+      backgroundColor: lime[600],
+    },
+  }))(LinearProgress);
 
 //TODO: Adding interface here
 const TradingListDetail = ({ record }: any) => {
@@ -147,7 +161,7 @@ const TradingListDetail = ({ record }: any) => {
                                     WIN/LOSS/RATIO
                                 </Typography>
 
-                                <LinearProgress
+                                <BorderLinearProgress
                                     value={return_pct * 100}
                                     variant='determinate'
                                 />
