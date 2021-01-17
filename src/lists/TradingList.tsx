@@ -53,6 +53,7 @@ const FIELDS = [
     },
 ];
 
+//TODO: Adding interface here
 const LiveTradingList = (props: any) => (
     <List {...props} bulkActionButtons={false} exporter={false} hasEdit>
         <Datagrid expand={<TradingListDetail />}>

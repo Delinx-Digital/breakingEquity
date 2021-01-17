@@ -29,6 +29,7 @@ const StatusChip = withStyles(()=> ({
     },
 }))(Chip);
 
+//TODO: Adding interface here
 const StatusField = ({source, record}: any) => {
     const statusStyle: any = useStatus();
     const currentStatus = record[source];

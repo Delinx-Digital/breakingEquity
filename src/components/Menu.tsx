@@ -11,8 +11,10 @@ const useStyles = makeStyles({
     },
 });
 
+//TODO: Adding interface here
 const Menu = ({ onMenuClick }: any) => {
     const classes = useStyles();
+    //TODO: Adding interface here
     const {sidebarOpen} = useSelector((state: any) => state.admin.ui);
     const resources = useSelector(getResources);
 

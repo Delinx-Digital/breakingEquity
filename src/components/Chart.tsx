@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { createChart } from 'lightweight-charts';
 
+//TODO: Adding interface here
 const Chart = ({ data }: any)=> {
+  //TODO: Adding interface here
   const ref: any = React.useRef();
 
   useEffect(() => {

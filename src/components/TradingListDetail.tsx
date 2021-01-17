@@ -12,6 +12,7 @@ const useStyles = makeStyles({
     },
 });
 
+//TODO: Adding interface here
 const TradingListDetail = ({ record }: any) => {
     const classes = useStyles();
 
@@ -74,7 +75,9 @@ const TradingListDetail = ({ record }: any) => {
     ];
 
     const serializedResultToJSON = JSON.parse(serialized_result);
+    //TODO: Adding interface here
     const resultbyCashEquity = serializedResultToJSON?.position_history.filter(({ type }: any)=> type === 'cash+equity')[0];
+    //TODO: Adding interface here
     const chartData = resultbyCashEquity?.positions.map((position: any)=> ({ time: position[0], value: position[1] }));
 
     return (

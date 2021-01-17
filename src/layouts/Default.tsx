@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     },
 });
 
+//TODO: Adding interface here
 const DefaultLayout = ({ children, ...restProps }: any) => {
     const classes = useStyles();
 

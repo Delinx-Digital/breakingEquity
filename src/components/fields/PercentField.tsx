@@ -25,6 +25,7 @@ const PercentChip = withStyles(()=> ({
     },
 }))(Chip);
 
+//TODO: Adding interface here
 const PercentField = ({ record, source, ...restProps }: any) => {
     const classes = useStyles();
     const percentValue = record[source];
