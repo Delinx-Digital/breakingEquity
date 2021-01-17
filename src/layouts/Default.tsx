@@ -14,10 +14,7 @@ const DefaultLayout = ({ children, ...restProps }: any) => {
     const classes = useStyles();
 
     return (
-        <Layout
-            appBar={AppBar}
-            {...restProps}
-        >
+        <Layout appBar={AppBar} {...restProps}>
             <div className={classes.layout}>
                 {children}
             </div>

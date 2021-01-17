@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { grey } from '@material-ui/core/colors';
 import { useSelector } from 'react-redux';
 import { MenuItemLink, getResources } from 'react-admin';
 
@@ -8,6 +9,7 @@ const useStyles = makeStyles({
         background: '#fff',
         height: '100%',
         paddingTop: 40,
+        borderRight: `1px solid ${grey[300]}`,
     },
 });
 

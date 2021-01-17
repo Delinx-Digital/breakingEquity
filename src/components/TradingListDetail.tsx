@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, LinearProgress, Typography } from '@material-ui/core';
 import { LogIn, LogOut } from 'react-feather';
-import { grey, green, red, lime } from '@material-ui/core/colors';
+import { grey, red, lime } from '@material-ui/core/colors';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { formatNumber } from '../utils';
 import Chart from './Chart';
@@ -98,7 +98,7 @@ const TradingListDetail = ({ record }: any) => {
             value: current_positions.map((position: any)=> (
                 <div>
                     {Object.keys(position).map((key)=> (
-                        <div>
+                        <div key={`${position[key]}-${key}`}>
                             {position[key]} x {key}
                         </div>
                     ))}
