@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ()=> (
+const Logo = ()=> (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="117"
@@ -25,4 +25,6 @@ export default ()=> (
         clipRule="evenodd"
       ></path>
     </svg>
-  );
+);
+
+export default Logo;

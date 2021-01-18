@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { grey, blue } from '@material-ui/core/colors';
 import { Chip } from '@material-ui/core';
-import { BarChart2, Layers, Zap, User, Menu } from 'react-feather';
+import { BarChart2, Layers, Zap, User } from 'react-feather';
 import Logo from './Logo';
 
 const useStyles = makeStyles({

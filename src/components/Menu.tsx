@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { MenuItemLink, getResources, ReduxState, MenuProps } from 'react-admin';
+import { MenuItemLink, getResources, ReduxState } from 'react-admin';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { grey, blue } from '@material-ui/core/colors';
 
