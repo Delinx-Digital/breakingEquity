@@ -95,8 +95,8 @@ const TradingListDetail = ({ record }: FieldProps) => {
     const tradingDetailInfo = [
         {
             label: 'Current position',
-            value: current_positions.map((position: any)=> (
-                <div>
+            value: current_positions.map((position: any, index: number)=> (
+                <div key={`current-position-${index}`}>
                     {Object.keys(position).map((key)=> (
                         <div key={`${position[key]}-${key}`}>
                             {position[key]} x {key}
